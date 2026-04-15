@@ -1,0 +1,5 @@
+{
+  "name": "GENEA Leaderboard",
+  "description": "An online leaderboard for AI models that animate speaking 3D characters, ranked by motion realism and speech-gesture alignment.",
+  "requestFramePermissions": []
+}

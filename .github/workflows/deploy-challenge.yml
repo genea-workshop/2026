@@ -1,0 +1,50 @@
+name: Deploy Challenge
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'challenge-src/**'
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy Challenge
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: challenge-src
+        run: npm ci
+
+      - name: Build project
+        working-directory: challenge-src
+        run: npm run build
+
+      - name: Deploy built files to challenge/
+        run: |
+          # Remove old built output (but not the source)
+          rm -rf challenge
+          # Move the built dist into challenge/
+          mv challenge-src/dist challenge
+
+          # Configure git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Commit and push the built output
+          git add challenge
+          git diff --cached --quiet && echo "No changes to deploy" && exit 0
+          git commit -m "Deploy challenge site [skip ci]"
+          git push
