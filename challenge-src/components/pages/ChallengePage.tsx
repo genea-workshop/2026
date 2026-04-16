@@ -202,7 +202,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
           rel="noopener noreferrer"
           className="block rounded-xl border border-brand-primary/20 bg-brand-primary/5 px-5 py-4 hover:border-brand-primary/40 hover:bg-brand-primary/10 transition-all duration-200"
         >
-          <p className="text-sm font-semibold text-brand-primary mb-1">Background: GENEA Leaderboard</p>
+          <p className="text-sm font-semibold text-brand-primary mb-1">Background: Evaluation practices in gesture-generation research</p>
           <p className="text-sm text-brand-text-muted">Read our CVPR Findings paper on the challenges of evaluating speech-driven 3D gesture generation.</p>
           <p className="text-xs text-brand-text-muted/60 mt-1">arxiv.org/abs/2511.01233</p>
         </a>
