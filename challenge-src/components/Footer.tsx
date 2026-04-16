@@ -7,8 +7,8 @@ const Footer: React.FC = () => {
         <p className="text-xs uppercase tracking-wide text-brand-text/60">GENEA Challenge 2026</p>
         <p className="text-sm text-brand-text/80">
           Questions? Drop us a line at{' '}
-          <a href="mailto:genea-leaderboard@googlegroups.com" className="font-semibold text-brand-primary hover:text-brand-secondary">
-            genea-leaderboard@googlegroups.com
+          <a href="mailto:genea-challenge@googlegroups.com" className="font-semibold text-brand-primary hover:text-brand-secondary">
+            genea-challenge@googlegroups.com
           </a>
           .
         </p>

@@ -97,7 +97,7 @@ const OrganizerCard: React.FC<typeof organizers[0]> = ({ name, imageUrl, affilia
   </div>
 );
 
-const sectionIds = ['introduction', 'dataset', 'important-dates', 'submission-tracks', 'organising-committee'];
+const sectionIds = ['introduction', 'dataset', 'important-dates', 'tasks', 'submission-tracks', 'organising-committee'];
 
 const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0 }) => {
   const [isFloating, setIsFloating] = useState(false);
@@ -164,10 +164,11 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
         >
           {[
             ['#introduction', 'Introduction'],
+            ['#important-dates', 'Important Dates'],
             ['#dataset', 'Dataset'],
-            ['#important-dates', 'Dates'],
+            ['#tasks', 'Challenge task'],
             ['#submission-tracks', 'Submission tracks'],
-            ['#organising-committee', 'Organisers'],
+            ['#organising-committee', 'Organising committee'],
           ].map(([href, label]) => {
             const isActive = activeSection === href.slice(1);
             return (
@@ -207,7 +208,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
         </a>
 
         <p>
-          The GENEA Challenge 2026 aims to advance the state of the art in this domain by providing standardised, large-scale human evaluation on the recently released Seamless Interaction dataset. By hosting a public challenge, we hope to foster collaboration and innovation in the research community.
+          The GENEA Challenge 2026 aims to advance the state of the art in this domain by providing standardised, large-scale human evaluation on the recently released <span className="font-semibold">Seamless Interaction</span> dataset. By hosting a public challenge, we hope to foster collaboration and innovation in the research community.
         </p>
 
         <p>
@@ -252,7 +253,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
       <section id="dataset" className="text-justify">
         <SectionHeading id="dataset" onNavigate={handleSmoothScroll}>Dataset</SectionHeading>
         <p className="mb-6">
-          This year's challenge uses the recently released Seamless Interaction dataset, which includes a wide range of features to support research in gesture generation:
+          This year's challenge uses the recently released Seamless Interaction dataset, which includes a wide range of features to support research in gesture generation, including but not limited to:
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
           {[
@@ -267,7 +268,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
             </div>
           ))}
         </div>
-        <p className="text-sm mb-3">The dataset contains four subsets:</p>
+        <p className="text-sm mb-3">The dataset is organised into four subsets containing different types of interactions. The challenge is primarily designed to evaluate models using these two subsets:</p>
         <div className="space-y-3 mb-6">
           {[
             {
@@ -285,26 +286,43 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
               </>,
               hours: '379 hrs', participants: '3.7k participants', interactions: '6.4k interactions',
             },
-            {
-              type: 'Collaborative story-telling',
-              desc: <>Pairs take turns weaving an improvised, fictional story, saying one or two sentences at a time.</>,
-              hours: '147 hrs', participants: '3.1k participants', interactions: '2.8k interactions',
-            },
-            {
-              type: 'Silent Charades',
-              desc: <>One participant acts out an expression silently, using only gestures, and the other participant improvises a silent response, also using only gestures.
-                <span className="block mt-1.5 text-xs text-gray-400 italic">
-                  <span className="font-semibold not-italic text-gray-500">A</span> <span className="text-gray-400">(expression: &quot;shake fists&quot;)</span>: Shakes fists in anger.{' '}
-                  <span className="font-semibold not-italic text-gray-500">B:</span> Raises hands up in defence, as if saying &quot;stop&quot;.
-                </span>
-              </>,
-              hours: '75 hrs', participants: '1.9k participants', interactions: '1.6k interactions',
-            },
-          ].map(({ type, desc, hours, participants, interactions }, index) => (
+          ].map(({ type, desc, hours, participants, interactions }) => (
             <div key={type} className="grid grid-cols-[180px_1fr] sm:grid-cols-[400px_1fr] gap-x-4 items-start rounded-xl bg-white border border-gray-100 px-4 py-3 hover:shadow-md transition-all duration-200">
               <div>
                 <span className="block text-sm font-semibold text-brand-text">
-                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-brand-primary text-white text-xs font-bold mr-1.5 align-text-bottom">{index + 1}</span>
+                  {type}
+                </span>
+                <div className="flex gap-1.5 mt-1 flex-wrap">
+                  <span className="inline-block text-xs font-medium text-brand-primary bg-brand-primary/10 px-2 py-0.5 rounded-full">{hours}</span>
+                  <span className="inline-block text-xs font-medium text-brand-primary bg-brand-primary/10 px-2 py-0.5 rounded-full">{participants}</span>
+                  <span className="inline-block text-xs font-medium text-brand-primary bg-brand-primary/10 px-2 py-0.5 rounded-full">{interactions}</span>
+                </div>
+              </div>
+              <span className="text-sm text-brand-text-muted pt-0.5">{desc}</span>
+            </div>
+          ))}
+        </div>
+        <p className="text-sm mb-3">The dataset also includes two additional subsets that may be used for training:</p>
+        <div className="space-y-3 mb-6">
+          {[{
+            type: 'Collaborative story-telling',
+            desc: <>Pairs take turns weaving an improvised, fictional story, saying one or two sentences at a time.</>,
+            hours: '147 hrs', participants: '3.1k participants', interactions: '2.8k interactions',
+          },
+          {
+            type: 'Silent Charades',
+            desc: <>One participant acts out an expression silently, using only gestures, and the other participant improvises a silent response, also using only gestures.
+              <span className="block mt-1.5 text-xs text-gray-400 italic">
+                <span className="font-semibold not-italic text-gray-500">A</span> <span className="text-gray-400">(expression: &quot;shake fists&quot;)</span>: Shakes fists in anger.{' '}
+                <span className="font-semibold not-italic text-gray-500">B:</span> Raises hands up in defence, as if saying &quot;stop&quot;.
+              </span>
+            </>,
+            hours: '75 hrs', participants: '1.9k participants', interactions: '1.6k interactions',
+          },
+          ].map(({ type, desc, hours, participants, interactions }) => (
+            <div key={type} className="grid grid-cols-[180px_1fr] sm:grid-cols-[400px_1fr] gap-x-4 items-start rounded-xl bg-white border border-gray-100 px-4 py-3 hover:shadow-md transition-all duration-200">
+              <div>
+                <span className="block text-sm font-semibold text-brand-text">
                   {type}
                 </span>
                 <div className="flex gap-1.5 mt-1 flex-wrap">
@@ -326,7 +344,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
       <section id="tasks" className="text-justify">
         <SectionHeading id="tasks" onNavigate={handleSmoothScroll}>Challenge task</SectionHeading>
         <p className="mb-6">
-          Your goal is to develop a 3D gesture-generation model that can produce sequences of 3D upper-body gestures using any of the inputs available in the Seamless Interaction dataset. You can choose to use any combination of the following input modalities:
+          Your goal is to develop a 3D gesture-generation model that can produce sequences of 3D upper-body gestures using any of the inputs available in the Seamless Interaction dataset. We recommend a combination of the following input modalities:
         </p>
 
         <div className="py-4 sm:py-6 mb-5">
@@ -338,42 +356,46 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
 
               {/* Character A */}
               <div className="rounded-xl border-2 border-brand-primary/20 bg-brand-primary/5 p-4">
-                <p className="font-bold text-brand-text mb-2.5">Character A</p>
+                <p className="font-bold text-brand-text mb-2.5">AI Character</p>
                 <ul className="space-y-2 text-sm text-brand-text">
                   <li className="flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-brand-primary shrink-0" />
+                    <svg className="w-4 h-4 text-brand-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" /></svg>
                     Speech audio sequence <span className="text-brand-primary/60 text-[11px] ml-auto font-mono font-semibold">.wav</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-brand-primary shrink-0" />
-                    Speech transcript with word-level timestamps <span className="text-brand-primary/60 text-[11px] ml-auto font-mono font-semibold">.jsonl</span>
+                    <svg className="w-4 h-4 text-brand-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Speech transcript with word-level timestamps<span className="text-brand-primary/60 text-[11px] ml-auto font-mono font-semibold">.jsonl</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-brand-primary shrink-0" />
-                    Voice activity sequence <span className="text-brand-primary/60 text-[11px] ml-auto font-mono font-semibold">.json</span>
+                    <svg className="w-4 h-4 text-brand-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    (optional) Keyword emphasis
+                  </li>
+                  <li className="flex items-center gap-2.5">
+                    <svg className="w-4 h-4 text-brand-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+                    Voice activity detection <span className="text-brand-primary/60 text-[11px] ml-auto font-mono font-semibold">.jsonl</span>
                   </li>
                 </ul>
               </div>
 
               {/* Character B */}
-              <div className="rounded-xl border-2 border-brand-secondary/20 bg-brand-secondary/5 p-4">
-                <p className="font-bold text-brand-text mb-2.5">Character B</p>
+              <div className="rounded-xl border-2 border-teal-400/30 bg-teal-50 p-4">
+                <p className="font-bold text-brand-text mb-2.5">Interlocutor</p>
                 <ul className="space-y-2 text-sm text-brand-text">
                   <li className="flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-brand-secondary shrink-0" />
-                    Speech audio sequence <span className="text-brand-secondary/60 text-[11px] ml-auto font-mono font-semibold">.wav</span>
+                    <svg className="w-4 h-4 text-teal-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" /></svg>
+                    Speech audio sequence <span className="text-teal-500/60 text-[11px] ml-auto font-mono font-semibold">.wav</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-brand-secondary shrink-0" />
-                    Speech transcript with word-level timestamps <span className="text-brand-secondary/60 text-[11px] ml-auto font-mono font-semibold">.jsonl</span>
+                    <svg className="w-4 h-4 text-teal-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    Speech transcript with word-level timestamps <span className="text-teal-500/60 text-[11px] ml-auto font-mono font-semibold">.jsonl</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-brand-secondary shrink-0" />
-                    3D motion sequence <span className="text-brand-secondary/60 text-[11px] ml-auto font-mono font-semibold">.npz</span>
+                    <svg className="w-4 h-4 text-teal-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 2a3 3 0 100 6 3 3 0 000-6zm0 6v6m0 0l-4 5m4-5l4 5m-8-8l4 2m0 0l4-2" /></svg>
+                    3D motion sequence <span className="text-teal-500/60 text-[11px] ml-auto font-mono font-semibold">SMPL-H</span>
                   </li>
                   <li className="flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-brand-secondary shrink-0" />
-                    Voice activity sequence <span className="text-brand-secondary/60 text-[11px] ml-auto font-mono font-semibold">.json</span>
+                    <svg className="w-4 h-4 text-teal-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+                    Voice activity detection <span className="text-teal-500/60 text-[11px] ml-auto font-mono font-semibold">.jsonl</span>
                   </li>
                 </ul>
               </div>
@@ -381,7 +403,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
 
             {/* --- ARROW 1 --- */}
             <div className="flex items-center justify-center py-1 md:py-0">
-              <svg className="w-8 h-8 text-brand-primary/40 rotate-90 md:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-8 h-8 text-gray-800 rotate-90 md:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </div>
@@ -395,32 +417,73 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
 
             {/* --- ARROW 2 --- */}
             <div className="flex items-center justify-center py-1 md:py-0">
-              <svg className="w-8 h-8 text-brand-success/50 rotate-90 md:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-8 h-8 text-gray-800 rotate-90 md:rotate-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </div>
 
             {/* --- OUTPUT --- */}
-            <div className="w-full md:w-64 flex flex-col gap-3 justify-center">
-              <p className="text-sm font-bold text-brand-success uppercase tracking-wider text-center">Output</p>
-
-              <div className="rounded-xl border-2 border-brand-primary/20 bg-brand-primary/5 p-4">
-                <p className="font-bold text-brand-text mb-2.5">Character A</p>
-                <ul className="text-sm text-brand-text">
-                  <li className="flex items-center gap-2.5">
-                    <span className="w-2 h-2 rounded-full bg-brand-primary shrink-0" />
-                    3D upper-body motion sequence
-                  </li>
-                </ul>
+            <div className="w-full md:w-80 flex flex-col">
+              {/* Character A */}
+              <div className="flex-1 flex items-center">
+                <div className="w-full">
+                  <p className="text-sm font-bold text-brand-primary uppercase tracking-wider text-center mb-3">Output</p>
+                  <div className="rounded-xl border-2 border-brand-primary/20 bg-brand-primary/5 p-4">
+                    <p className="font-bold text-brand-text mb-2.5">AI Character</p>
+                    <ul className="space-y-2 text-sm text-brand-text">
+                      <li className="flex items-center gap-2.5">
+                        <svg className="w-4 h-4 text-brand-secondary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 2a3 3 0 100 6 3 3 0 000-6zm0 6v6m0 0l-4 5m4-5l4 5m-8-8l4 2m0 0l4-2" /></svg>
+                        3D motion sequence <span className="text-brand-secondary/60 text-[11px] ml-auto font-mono font-semibold">SMPL-H</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
-
           </div>
         </div>
 
         <p className="mb-4">
-          You will be evaluated on your model's ability to generate natural and engaging gestures that align with the provided speech input. The evaluation will be based on a combination of automated metrics and human judgments, with a particular focus on how well the generated gestures match human perception.
+          Your system will be evaluated on up to four evaluation tasks using a series of crowdsourced user studies.
         </p>
+        <p className="text-xl font-semibold uppercase tracking-wider text-brand-primary mb-2">Core evaluation tasks</p>
+        <p className="mb-4">
+          All submissions will be evaluated on these two core tasks:
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+          {[
+            { num: 1, title: 'Motion realism', desc: 'How natural and visually convincing is the generated motion?' },
+            { num: 2, title: 'Alignment with speech', desc: 'Is the generated motion aligned with the input speech?' },
+          ].map(({ num, title, desc }) => (
+            <div key={num} className="flex items-start gap-3 rounded-xl bg-white border border-gray-100 px-4 py-3 hover:shadow-md transition-all duration-200">
+              <span className="flex-shrink-0 w-7 h-7 bg-brand-primary text-white text-xs font-bold rounded-full flex items-center justify-center mt-0.5">{num}</span>
+              <div>
+                <p className="text-sm font-semibold text-brand-text">{title}</p>
+                <p className="text-sm text-brand-text-muted mt-0.5">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-xl font-semibold uppercase tracking-wider text-brand-primary mb-2">Optional evaluation tasks</p>
+        <p className="mb-4">
+          We also have two optional tasks for systems that use semantic conditioning and/or interlocutor inputs:
+        </p><div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+          {[
+            { num: 3, title: 'Semantic alignment', desc: 'Does the generated motion express the meaning of a highlighted keyword?' },
+            { num: 4, title: 'Dyadic alignment and expressivity', desc: 'Is the generated motion responsive to the interlocutor?' },
+          ].map(({ num, title, desc }) => (
+            <div key={num} className="flex items-start gap-3 rounded-xl bg-white border border-gray-100 px-4 py-3 hover:shadow-md transition-all duration-200">
+              <span className="flex-shrink-0 w-7 h-7 bg-brand-primary text-white text-xs font-bold rounded-full flex items-center justify-center mt-0.5">{num}</span>
+              <div>
+                <p className="text-sm font-semibold text-brand-text">{title}</p>
+                <p className="text-sm text-brand-text-muted mt-0.5">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        The semantic evaluation will be based on the grounded gestures subset, and will include an emphasised keyword in the speech transcript input.
+        The dyadic evaluation will be based on the dyadic conversations subset, focusing on listening behaviour, backchanneling, and other forms of social interaction.
       </section>
 
       <section id="submission-tracks" className="text-justify">
@@ -430,7 +493,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
         </p>
         <div className="flex flex-col gap-4 mb-6">
           {[
-            { track: 'Track 1', color: 'text-brand-primary bg-brand-primary/10', title: 'ECCV Workshop Submission', format: '8-page submission, double-blind review, published in ECCV Workshop Proceedings.', desc: 'Intended for new systems or significant extensions of previously published systems.' },
+            { track: 'Track 1', color: 'text-brand-primary bg-brand-primary/10', title: 'ECCV Workshop Submission', format: '8-page submission to the Interactive Social Agents workshop, double-blind review, published in ECCV Workshop Proceedings.', desc: 'Intended for new systems or significant extensions of previously published systems.' },
             { track: 'Track 2', color: 'text-brand-secondary bg-brand-secondary/10', title: 'Extended Abstracts', format: '4-page submission, double-blind review, non-archival', desc: 'For systems not yet ready for a full paper, enabling rapid dissemination of preliminary results and broader participation.' },
             { track: 'Track 3', color: 'text-brand-text-muted bg-gray-100', title: 'Published Papers', format: 'System description form', desc: 'For systems already published in a peer-reviewed venue, submitted for evaluation and comparison with other methods.' },
           ].map(({ track, color, title, format, desc }) => (
@@ -442,9 +505,18 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
             </div>
           ))}
         </div>
-        <p>
-          Participants can submit to one or more tracks, and will receive separate evaluations for each track. The different tracks allow us to evaluate the impact of different input modalities on gesture generation performance.
-        </p>
+
+        The submission system will open at a later date, and detailed submission instructions will be provided in the coming months. In the meantime, please register your interest in participating using the button below:
+        <div className="text-center mt-4">
+          <a
+            href="https://forms.gle/MhorH9X3PmLsbQ5e8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-5 py-2 sm:px-8 sm:py-3 bg-white text-brand-primary font-bold text-sm sm:text-lg rounded-full shadow-lg hover:bg-brand-primary hover:text-white transition-all duration-200"
+          >
+            Register now!
+          </a>
+        </div>
       </section>
 
       {/* Organising Committee */}
@@ -452,8 +524,8 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
         <SectionHeading id="organising-committee" onNavigate={handleSmoothScroll}>Organising committee</SectionHeading>
         <p className="mb-6">
           Questions about the challenge can be sent to{' '}
-          <a href="mailto:genea-leaderboard@googlegroups.com" className="font-semibold text-brand-primary hover:underline">
-            genea-leaderboard@googlegroups.com
+          <a href="mailto:genea-challenge@googlegroups.com" className="font-semibold text-brand-primary hover:underline">
+            genea-challenge@googlegroups.com
           </a>.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -463,7 +535,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
         </div>
       </section>
 
-    </div>
+    </div >
   );
 };
 

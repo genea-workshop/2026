@@ -34,7 +34,7 @@ You should see an output like
 ```
 @nagyrajmund ➜ /workspaces/leaderboard (test) $ npm run dev
 
-> genea-leaderboard@0.0.0 dev
+> genea-challenge@0.0.0 dev
 > vite
 
 

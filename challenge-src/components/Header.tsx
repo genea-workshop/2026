@@ -12,8 +12,8 @@ const Header: React.FC = () => {
             className="w-full object-cover"
           />
           <div
-            className="absolute top-0 left-0 right-0 flex flex-col justify-between px-4 py-4 sm:px-6 sm:py-10 space-y-1 sm:space-y-4 md:space-y-5"
-            style={{ height: '90%', textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}>
+            className="absolute top-0 left-0 right-0 flex flex-col justify-between px-4 pt-4 pb-2 sm:px-6 sm:pt-10 sm:pb-4 space-y-1 sm:space-y-4 md:space-y-5"
+            style={{ height: '100%', textShadow: '0 2px 20px rgba(0,0,0,0.6)' }}>
             <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-snug sm:leading-relaxed">
               The 4th GENEA
             </h1>
@@ -34,6 +34,16 @@ const Header: React.FC = () => {
               <p className="text-sm sm:text-lg md:text-2xl font-semibold text-white/90 leading-normal sm:leading-relaxed">
                 ECCV 2026 in Malmö, Sweden
               </p>
+            </div>
+            <div>
+              <a
+                href="https://forms.gle/MhorH9X3PmLsbQ5e8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-5 py-2 sm:px-8 sm:py-3 bg-white text-brand-primary font-bold text-sm sm:text-lg rounded-full shadow-lg hover:bg-brand-primary hover:text-white transition-all duration-200"
+              >
+                Register now!
+              </a>
             </div>
           </div>
         </div>

@@ -159,8 +159,8 @@ const RulesPage: React.FC = () => (
       <SubHeading>Contact</SubHeading>
       <Par>
         Questions about the rules can be sent to{' '}
-        <a href="mailto:genea-leaderboard@googlegroups.com" className="font-semibold text-brand-primary hover:underline">
-          genea-leaderboard@googlegroups.com
+        <a href="mailto:genea-challenge@googlegroups.com" className="font-semibold text-brand-primary hover:underline">
+          genea-challenge@googlegroups.com
         </a>.
       </Par>
     </div>

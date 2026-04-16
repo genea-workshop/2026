@@ -175,7 +175,7 @@ const SubmitPage: React.FC = () => {
         <Par>If issues with rules compliance are uncovered with submissions to the leaderboard, a publicly visible note describing the issues may be added to your submission. Blatant rules violations and behaviour that goes against the spirit of the leaderboard – for example training on the test data, deliberately misleading system descriptions, or scientific fraud – may result in team members being blacklisted from submitting to the leaderboard.</Par>
 
         <h4 className="text-lg font-bold text-brand-text mt-8 mb-3">Contact information</h4>
-        <Par>Please contact the organisers at <a href="mailto:genea-leaderboard@googlegroups.com" className="font-semibold text-brand-primary hover:text-brand-secondary transition-colors">genea-leaderboard@googlegroups.com</a> if you have any questions about these rules.</Par>
+        <Par>Please contact the organisers at <a href="mailto:genea-challenge@googlegroups.com" className="font-semibold text-brand-primary hover:text-brand-secondary transition-colors">genea-challenge@googlegroups.com</a> if you have any questions about these rules.</Par>
       </div>
 
       {/* Submission Form Section */}
