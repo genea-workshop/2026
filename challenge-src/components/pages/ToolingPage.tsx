@@ -59,7 +59,7 @@ const ToolingPage: React.FC = () => {
                     />
                     <ToolCard
                         title="Online real-time visualiser"
-                        link="https://genea-workshop.github.io/leaderboard/BVHView/bvhview.html"
+                        link="https://huggingface.co/spaces/nagyrajmund/genea-visualizer"
                         imageUrl="/2026/challenge/assets/hf_visualizer.png"
                         description={[
                             "A drag-and-drop online visualiser hosted on Huggingface spaces."
