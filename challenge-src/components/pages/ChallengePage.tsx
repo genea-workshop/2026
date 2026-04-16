@@ -471,7 +471,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
         </p><div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
           {[
             { num: 3, title: 'Semantic alignment', desc: 'Does the generated motion express the meaning of a highlighted keyword?' },
-            { num: 4, title: 'Dyadic alignment and expressivity', desc: 'Is the generated motion responsive to the interlocutor?' },
+            { num: 4, title: 'Dyadic alignment', desc: 'Is the generated motion responsive to the interlocutor?' },
           ].map(({ num, title, desc }) => (
             <div key={num} className="flex items-start gap-3 rounded-xl bg-white border border-gray-100 px-4 py-3 hover:shadow-md transition-all duration-200">
               <span className="flex-shrink-0 w-7 h-7 bg-brand-primary text-white text-xs font-bold rounded-full flex items-center justify-center mt-0.5">{num}</span>
