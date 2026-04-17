@@ -448,7 +448,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
         </p>
         <p className="text-xl font-semibold uppercase tracking-wider text-brand-primary mb-2">Core evaluation tasks</p>
         <p className="mb-4">
-          All submissions will be evaluated on these two core tasks:
+          To participate in the challenge, you will need to develop a model that can generate gestures from speech. All submissions will be evaluated on these two core tasks:
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
           {[
@@ -467,7 +467,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
 
         <p className="text-xl font-semibold uppercase tracking-wider text-brand-primary mb-2">Optional evaluation tasks</p>
         <p className="mb-4">
-          We also have two optional tasks for systems that use semantic conditioning and/or interlocutor inputs:
+          Additionally, for models that incorporate additional input – speech transcript, semantic emphasis, and/or interlocutor information – we also have two additional evaluation tasks:
         </p><div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
           {[
             { num: 3, title: 'Semantic alignment', desc: 'Does the generated motion express the meaning of a highlighted keyword?' },
@@ -483,7 +483,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
           ))}
         </div>
         The semantic evaluation will be based on the grounded gestures subset, and will include an emphasised keyword in the speech transcript input.
-        The dyadic evaluation will be based on the dyadic conversations subset, focusing on listening behaviour, backchanneling, and other forms of social interaction.
+        The dyadic evaluation will be based on the dyadic conversations subset, focusing on listening behaviour, backchanneling, and other forms of social interaction. 
       </section>
 
       <section id="submission-tracks" className="text-justify">
