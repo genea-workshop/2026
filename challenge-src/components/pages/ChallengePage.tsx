@@ -53,7 +53,7 @@ const organizers = [
     name: 'Youngwoo Yoon',
     imageUrl: `${BASE_PATH}assets/youngwoo.jpg`,
     affiliation: 'ETRI, South Korea',
-    link: 'https://sites.google.com/view/youngwoo-yoon/',
+    link: 'https://youngwoo-yoon.github.io/',
   },
   {
     name: 'Gustav Eje Henter',
