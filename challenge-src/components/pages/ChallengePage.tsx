@@ -493,8 +493,8 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
         </p>
         <div className="flex flex-col gap-4 mb-6">
           {[
-            { track: 'Track 1', color: 'text-brand-primary bg-brand-primary/10', title: 'ECCV Workshop Submission', format: '8-page submission to the Interactive Social Agents workshop, double-blind review, published in ECCV Workshop Proceedings.', desc: 'Intended for new systems or significant extensions of previously published systems.' },
-            { track: 'Track 2', color: 'text-brand-secondary bg-brand-secondary/10', title: 'Extended Abstracts', format: '4-page submission, double-blind review, non-archival', desc: 'For systems not yet ready for a full paper, enabling rapid dissemination of preliminary results and broader participation.' },
+            { track: 'Track 1', color: 'text-brand-primary bg-brand-primary/10', title: 'ECCV Workshop Submission', format: 'max 14-page submission to the Interactive Social Agents workshop, double-blind review, published in ECCV Workshop Proceedings.', desc: 'Intended for new systems or significant extensions of previously published systems.' },
+            { track: 'Track 2', color: 'text-brand-secondary bg-brand-secondary/10', title: 'Extended Abstracts', format: 'max 7-page submission, double-blind review, non-archival', desc: 'For systems not yet ready for a full paper, enabling rapid dissemination of preliminary results and broader participation.' },
             { track: 'Track 3', color: 'text-brand-text-muted bg-gray-100', title: 'Published Papers', format: 'System description form', desc: 'For systems already published in a peer-reviewed venue, submitted for evaluation and comparison with other methods.' },
           ].map(({ track, color, title, format, desc }) => (
             <div key={track} className="relative rounded-xl border border-gray-100 bg-white p-6 hover:shadow-md transition-all duration-200">
