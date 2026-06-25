@@ -24,7 +24,7 @@ const Header: React.FC = () => {
               Challenge
             </h1>
             <p className="w-fit text-xs sm:text-sm md:text-base font-semibold text-white bg-red-600/90 px-3 py-1 rounded-full leading-tight sm:leading-normal">
-              Submission deadline: June 28th
+              Submission deadline: July 1st
             </p>
             <div>
               <hr className="mb-2 sm:mb-3 border-white/40 w-24 sm:w-48" />
