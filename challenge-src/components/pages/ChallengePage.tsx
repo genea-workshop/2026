@@ -230,6 +230,7 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
               const parts = beforeYear.split(',').map((p) => p.trim()).filter(Boolean);
               const current = parts.length ? parts[parts.length - 1] : '';
               const old = parts.slice(0, -1);
+              const hasOld = old.length > 0;
               return (
                 <div key={date} className="flex flex-col items-center relative flex-1" style={{ minWidth: 120 }}>
                   {/* Connector line */}
@@ -241,13 +242,11 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
                     {index + 1}
                   </div>
                   {/* Date — fixed height so event text aligns */}
-                  <div className="h-9 flex flex-col justify-start items-center mt-2">
-                    <p className="text-xs font-semibold text-brand-text text-center leading-tight">
-                      {old.map((o, i) => (
-                        <span key={i} className="text-gray-400 line-through font-normal mr-1">{o}</span>
-                      ))}
-                      <span>{current}</span>
-                    </p>
+                  <div className="h-14 flex flex-col justify-start items-center mt-2">
+                    {old.map((o, i) => (
+                      <p key={i} className="text-xs text-red-500 line-through text-center leading-tight">{o}</p>
+                    ))}
+                    <p className={`text-xs font-semibold text-center leading-tight ${hasOld ? 'text-green-600' : 'text-brand-text'}`}>{current}</p>
                     <p className="text-xs text-gray-400 text-center">{line2 || '\u00A0'}</p>
                   </div>
                   {/* Event */}
