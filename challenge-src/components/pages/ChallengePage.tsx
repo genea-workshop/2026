@@ -5,7 +5,7 @@ const dates = [
   { date: 'April 16, 2026', event: 'Challenge launch' },
   { date: 'June 21, 2026', event: 'Test sequences released' },
   { date: 'June 28, July 1, 2026', event: 'Model output submission deadline' },
-  { date: 'July 10, July 13 2026', event: 'Evaluation results released' },
+  { date: 'July 10, July 13, 2026', event: 'Evaluation results released' },
   { date: 'July 15, July 18, 2026', event: 'Paper submission deadline' },
   { date: 'August 3, August 6, 2026', event: 'Author notifications' },
   { date: 'August 8, August 11, 2026', event: 'Camera-ready version deadline' },
