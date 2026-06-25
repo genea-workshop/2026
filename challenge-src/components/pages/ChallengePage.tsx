@@ -4,11 +4,11 @@ import { BASE_PATH } from '../../constants';
 const dates = [
   { date: 'April 16, 2026', event: 'Challenge launch' },
   { date: 'June 21, 2026', event: 'Test sequences released' },
-  { date: 'June 28, 2026', event: 'Model output submission deadline' },
-  { date: 'July 10, 2026', event: 'Evaluation results released' },
-  { date: 'July 15, 2026', event: 'Paper submission deadline' },
-  { date: 'August 3, 2026', event: 'Author notifications' },
-  { date: 'August 8, 2026', event: 'Camera-ready version deadline' },
+  { date: 'June 28, July 1, 2026', event: 'Model output submission deadline' },
+  { date: 'July 10, July 13 2026', event: 'Evaluation results released' },
+  { date: 'July 15, July 18, 2026', event: 'Paper submission deadline' },
+  { date: 'August 3, August 6, 2026', event: 'Author notifications' },
+  { date: 'August 8, August 11, 2026', event: 'Camera-ready version deadline' },
   { date: 'September 8-9, 2026', event: 'ECCV Workshop in Malmö, Sweden' },
 ];
 
@@ -223,8 +223,13 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
           <div className="flex items-start min-w-max">
             {dates.map(({ date, event }, index) => {
               const lastComma = date.lastIndexOf(',');
-              const line1 = lastComma !== -1 ? date.slice(0, lastComma) : date;
+              const beforeYear = lastComma !== -1 ? date.slice(0, lastComma) : date;
               const line2 = lastComma !== -1 ? date.slice(lastComma + 1).trim() : '';
+              // Split the part before the year into individual dates.
+              // The last one is current; any earlier ones are old (crossed-out) deadlines.
+              const parts = beforeYear.split(',').map((p) => p.trim()).filter(Boolean);
+              const current = parts.length ? parts[parts.length - 1] : '';
+              const old = parts.slice(0, -1);
               return (
                 <div key={date} className="flex flex-col items-center relative flex-1" style={{ minWidth: 120 }}>
                   {/* Connector line */}
@@ -237,7 +242,12 @@ const ChallengePage: React.FC<{ pageNavHeight?: number }> = ({ pageNavHeight = 0
                   </div>
                   {/* Date — fixed height so event text aligns */}
                   <div className="h-9 flex flex-col justify-start items-center mt-2">
-                    <p className="text-xs font-semibold text-brand-text text-center leading-tight">{line1}</p>
+                    <p className="text-xs font-semibold text-brand-text text-center leading-tight">
+                      {old.map((o, i) => (
+                        <span key={i} className="text-gray-400 line-through font-normal mr-1">{o}</span>
+                      ))}
+                      <span>{current}</span>
+                    </p>
                     <p className="text-xs text-gray-400 text-center">{line2 || '\u00A0'}</p>
                   </div>
                   {/* Event */}
